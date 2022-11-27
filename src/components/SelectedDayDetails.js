@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import { FiWind } from 'react-icons/fi';
 import { CiTempHigh } from 'react-icons/ci';
 import { WiHumidity } from 'react-icons/wi';
@@ -85,5 +86,11 @@ function SelectedDayDetails({ items, city, chosenDate }) {
     </div>
   ) : null;
 }
+
+SelectedDayDetails.propTypes = {
+  items: PropTypes.array,
+  city: PropTypes.string,
+  chosenDate: PropTypes.string
+};
 
 export default SelectedDayDetails;

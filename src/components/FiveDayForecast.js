@@ -1,14 +1,13 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { FiWind } from "react-icons/fi";
+import { FiWind } from 'react-icons/fi';
 
 function FiveDayForecast({ items, title, changeChosenDay }) {
   return (
     <div className="max-w-[1240px] m-auto bg-[#226cb6] bg-opacity-20 shadow-gray-50 rounded-xl px-3 py-2 mt-5">
       <div className="flex items-center justify-start">
-        <p className="text-white font-medium uppercase text-xs md:text-md">
-          {title}
-        </p>
+        <p className="text-white font-medium uppercase text-xs md:text-md">{title}</p>
       </div>
       <hr className="my-2" />
       <div className="flex flex-col gap-3 md:flex-row items-center justify-between text-white ">
@@ -16,16 +15,11 @@ function FiveDayForecast({ items, title, changeChosenDay }) {
           <div
             key={item.dt}
             className="flex flex-row w-full gap-5 items-center justify-between py-2 px-3 md:flex-col  rounded-xl bg-[#226cb6] bg-opacity-20 hover:cursor-pointer hover:bg-[#226cb6] "
-            onClick={() => changeChosenDay(item.date)}
-          >
+            onClick={() => changeChosenDay(item.date)}>
             <p className="font-bold text-md">
-              {item.day === new Date().getDate()
-                ? "Today"
-                : item.day_of_the_week}
+              {item.day === new Date().getDate() ? 'Today' : item.day_of_the_week}
             </p>
-            <p className="font-medium text-2xl  md:mt-2">
-              {Math.floor(item.temp_average)}°
-            </p>
+            <p className="font-medium text-2xl  md:mt-2">{Math.floor(item.temp_average)}°</p>
             <div className="flex flex-col md:flex-col h-full items-start justify-start p-2 shadow-gray-50 rounded-xl">
               <div className="flex items-center justify-start flex-col md:flex-row gap-1">
                 <div className="flex flex-row justify-between items-center">
@@ -48,5 +42,11 @@ function FiveDayForecast({ items, title, changeChosenDay }) {
     </div>
   );
 }
+
+FiveDayForecast.propTypes = {
+  items: PropTypes.array,
+  title: PropTypes.string,
+  changeChosenDay: PropTypes.func
+};
 
 export default FiveDayForecast;

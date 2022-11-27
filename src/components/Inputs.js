@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { CiLocationOn } from 'react-icons/ci';
 
@@ -41,5 +42,10 @@ function Inputs({ setSearchParams, setChosenDate }) {
     </div>
   );
 }
+
+Inputs.propTypes = {
+  setSearchParams: PropTypes.func,
+  setChosenDate: PropTypes.func
+};
 
 export default Inputs;

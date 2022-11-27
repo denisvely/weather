@@ -1,4 +1,4 @@
-import Overview from "./screens/Overview";
+import Overview from './screens/Overview';
 
 function App() {
   return (

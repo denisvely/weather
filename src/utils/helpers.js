@@ -4,6 +4,6 @@ export const metersToKm = (value) => {
 };
 export const getIconUrlFromCode = (code) => `http://openweathermap.org/img/wn/${code}@2x.png`;
 export const getWeekDayName = (date) => {
-  let day = date.toLocaleString("en-GB", { weekday: "short" });
+  let day = date.toLocaleString('en-GB', { weekday: 'short' });
   return day;
 };
