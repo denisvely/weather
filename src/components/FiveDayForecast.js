@@ -15,10 +15,9 @@ function FiveDayForecast({ items, title, changeChosenDay }) {
           <div
             key={item.dt}
             className="flex flex-row w-full gap-5 items-center justify-between py-2 px-3 md:flex-col  rounded-xl bg-[#226cb6] bg-opacity-20 hover:cursor-pointer hover:bg-[#226cb6] "
-            onClick={() => changeChosenDay(item.date)}>
-            <p className="font-bold text-md">
-              {item.day === new Date().getDate() ? 'Today' : item.day_of_the_week}
-            </p>
+            onClick={() => changeChosenDay(item.date)}
+          >
+            <p className="font-bold text-md">{item.day === new Date().getDate() ? 'Today' : item.day_of_the_week}</p>
             <p className="font-medium text-2xl  md:mt-2">{Math.floor(item.temp_average)}°</p>
             <div className="flex flex-col md:flex-col h-full items-start justify-start p-2 shadow-gray-50 rounded-xl">
               <div className="flex items-center justify-start flex-col md:flex-row gap-1">

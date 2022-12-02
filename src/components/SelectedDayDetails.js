@@ -20,7 +20,7 @@ function SelectedDayDetails({ items, city, chosenDate }) {
         }
       });
     }
-  }, [chosenDate]);
+  }, [chosenDate, items]);
 
   return currentForecast ? (
     <div className="flex justify-center gap-10 items-center flex-col max-w-[1240px] m-auto">
@@ -30,24 +30,18 @@ function SelectedDayDetails({ items, city, chosenDate }) {
           {city}
         </h2>
         <div className="flex justify-center items-center relative px-4">
-          <h1 className="text-8xl">
-            {Math.floor(
-              currentForecast.day === new Date().getDate()
-                ? currentForecast.main.temp
-                : currentForecast.temp_average
-            )}
-          </h1>
+          <h1 className="text-8xl">{Math.floor(currentForecast.day === new Date().getDate() ? currentForecast.main.temp : currentForecast.temp_average)}</h1>
           <p className="text-5xl absolute top-0 right-0">&#176;</p>
         </div>
         <img src={getIconUrlFromCode(currentForecast.weather[0].icon)} alt="" className="w-20" />
         <div className="flex justify-center items-center relative">
           <div className="flex justify-center items-center relative px-2">
-            <h1 className="text-xl">H: {Math.floor(currentForecast.temp_max_daily)}</h1>
-            <p className="text-xl absolute top-0 right-0">°</p>
-          </div>
-          <div className="flex justify-center items-center relative px-2">
             <h1 className="text-xl">L: {Math.floor(currentForecast.temp_min_daily)}</h1>
             <p className="text-xl absolute top-0 right-0">&#176;</p>
+          </div>
+          <div className="flex justify-center items-center relative px-2">
+            <h1 className="text-xl">H: {Math.floor(currentForecast.temp_max_daily)}</h1>
+            <p className="text-xl absolute top-0 right-0">°</p>
           </div>
         </div>
         <div className="flex items-center justify-between"></div>

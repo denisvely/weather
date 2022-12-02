@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { getWeekDayName } from '../utils/helpers';
+import { getWeekDayName, findMaxTemp, findMinTemp } from '../utils/helpers';
 
 const API_KEY = '2f69ea4bc882c7a2b2b3386eaadfc4c8';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/forecast';
@@ -38,7 +38,7 @@ const formatForecastDataHourly = async (data) => {
     const day = new Date(item.dt_txt).getDate();
     const date = item.dt_txt.split(' ')[0];
     if (!hourlyData[date]) hourlyData[date] = [];
-    hourlyData[date].push({ ...item, day });
+    hourlyData[date].push({ ...item, day, date });
     return;
   });
 
@@ -49,17 +49,8 @@ const formatForecastDataDaily = (data) => {
   const averageDailyData = [];
 
   Object.values(data).map((dayData) => {
-    const temp_max_daily = dayData.reduce((acc, item) => {
-      if (item.main.temp_max > acc) acc = item.main.temp_max;
-
-      return Math.round(acc);
-    }, 0);
-
-    const temp_min_daily = dayData.reduce((acc, item) => {
-      if (item.main.temp_min < acc) acc = item.main.temp_min;
-
-      return Math.round(acc);
-    }, 0);
+    const temp_max_daily = findMaxTemp(dayData);
+    const temp_min_daily = findMinTemp(dayData);
 
     const wind_average =
       dayData.reduce((acc, item) => {
